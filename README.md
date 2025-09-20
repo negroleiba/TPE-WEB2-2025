@@ -39,5 +39,6 @@ id_productos (pk)
 - nombre_producto
 - precio
 - talle
--color
-  estas tablas se relaciona entres si por el id_categorias.
+- color
+  
+  # estas tablas se relaciona entres si por el id_categorias.
