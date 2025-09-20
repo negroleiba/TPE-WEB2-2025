@@ -11,31 +11,31 @@ Tomas Gonzalez: tomasgonzalez429030@gmail.com
 
 
 # Tienda de Viceras
-Nuestra página web, es una tienda de Viceras que ofrece variedad en distintos talles y precios.
+  Nuestra página web, es una tienda de Viceras que ofrece variedad en distintos talles y precios.
 
 
 
 # por el momento, contamos con tres 3 tablas:
-·categoria
-·producto
-·usuario
+-categoria
+-producto
+-usuario
 
--categoria cuenta con los atributos:
+  categoria cuenta con los atributos:
 
 
 
 id_categoria (pk)
-·nombre_categoria
-·descripcion
+- nombre_categoria
+- descripcion
 
-producto cuenta con los atributos:
+  producto cuenta con los atributos:
 
 
 
 id_productos (pk)
-·id_categorias (fk)
-·nombre_producto
-·precio
-·talle
-color
-estas tablas se relaciona entres si por el id_categorias.
+- id_categorias (fk)
+- nombre_producto
+- precio
+- talle
+-color
+  estas tablas se relaciona entres si por el id_categorias.
