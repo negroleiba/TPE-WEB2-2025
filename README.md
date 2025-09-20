@@ -4,8 +4,10 @@ Trabajo Especial Web2 de Brandon Leiva y Tomas Gonzalez
 TPE-WEB2
 
 # Integrantes
-Brandon Leiva: brandonjeremias1@hotmail.com
-Tomas Gonzalez: tomasgonzalez429030@gmail.com
+- Brandon Leiva: brandonjeremias1@hotmail.com
+
+
+- Tomas Gonzalez: tomasgonzalez429030@gmail.com
 
 
 
@@ -16,9 +18,9 @@ Tomas Gonzalez: tomasgonzalez429030@gmail.com
 
 
 # por el momento, contamos con tres 3 tablas:
--categoria
--producto
--usuario
+- categoria
+- producto
+- usuario
 
   categoria cuenta con los atributos:
 
