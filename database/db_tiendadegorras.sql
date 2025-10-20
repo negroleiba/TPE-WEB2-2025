@@ -34,6 +34,16 @@ CREATE TABLE `categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
+-- Inserción de datos en categorías
+-- --------------------------------------------------------
+INSERT INTO `categorias` (`nombre_categoria`, `descripción`) VALUES
+('Snapback', 'Gorras planas con broche ajustable'),
+('Trucker', 'Gorras con red trasera y visera curva'),
+('Dad Hat', 'Gorras suaves y ajustables con visera curvada'),
+('Flexfit', 'Gorras elásticas que se ajustan a la cabeza'),
+('Deportiva', 'Gorras diseñadas para actividades físicas');
+
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `productos`
@@ -49,6 +59,38 @@ CREATE TABLE `productos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
+-- Inserción de datos en productos
+-- --------------------------------------------------------
+INSERT INTO `productos` (`id_categorias`, `nombre_producto`, `precio`, `talle`, `color`) VALUES
+-- SNAPBACK
+(1, 'Gorra Snapback Negra Classic', 9500, 58, 'Negro'),
+(1, 'Gorra Snapback Roja Supreme', 11000, 59, 'Rojo'),
+(1, 'Gorra Snapback Blanca Urban', 9800, 58, 'Blanco'),
+(1, 'Gorra Snapback Verde Army', 10200, 60, 'Verde Militar'),
+
+-- TRUCKER
+(2, 'Gorra Trucker Blanca y Negra', 8700, 57, 'Blanco y Negro'),
+(2, 'Gorra Trucker Azul Marino Logo', 9200, 58, 'Azul Marino'),
+(2, 'Gorra Trucker Roja Retro', 8900, 59, 'Rojo'),
+(2, 'Gorra Trucker Gris Shadow', 9100, 58, 'Gris'),
+
+-- DAD HAT
+(3, 'Gorra Dad Hat Azul Denim', 9800, 56, 'Azul'),
+(3, 'Gorra Dad Hat Rosa Vintage', 9700, 56, 'Rosa'),
+(3, 'Gorra Dad Hat Negra Minimal', 9900, 57, 'Negro'),
+
+-- FLEXFIT
+(4, 'Gorra Flexfit Gris Minimal', 10500, 58, 'Gris'),
+(4, 'Gorra Flexfit Azul Oscuro', 10800, 59, 'Azul Oscuro'),
+(4, 'Gorra Flexfit Blanca Premium', 10700, 58, 'Blanco'),
+
+-- DEPORTIVA
+(5, 'Gorra Deportiva Nike Dri-Fit', 11500, 60, 'Negro'),
+(5, 'Gorra Deportiva Adidas Run', 11200, 59, 'Azul'),
+(5, 'Gorra Deportiva Puma Active', 10900, 58, 'Gris');
+
+
+-- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `usuario`
@@ -58,8 +100,16 @@ CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `nombre_usuario` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
-  `password` varchar(200) NOT NULL
+  `pass` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+-- Inserción de datos en productos
+-- --------------------------------------------------------
+
+INSERT INTO `usuarios` (`id_usuario`, `nombre_usuario`, `email`, `pass`) VALUES
+(1, 'Tomas Gonzalez', 'tomasgonzalez429030@gmail.com', '$2y$10$i9WiWDC.gqusSMLWVeP96u0PrgTyhyicR1SSRGeOcBucHBFPzoL5K'),
+(2, 'Brandown Leiva', 'brandonayelenmeamaleiva@gmail.com', '$2y$10$u4heaCRCcQt014uAUpW6KuUz.WxxVZOVIAYhxdf9VUCmh6ju5XPDG');
 
 --
 -- Índices para tablas volcadas
