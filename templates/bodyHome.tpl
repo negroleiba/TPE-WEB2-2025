@@ -3,7 +3,7 @@
 <section class="conteiner-fluid text-center">
   <div class="card border-0 text-center">
     <!-- <div class="card-header"> -->
-    <!--   Bienvenido a TresA Neumaticos -->
+    <!--   Bienvenido a Tienda de Caps -->
     <!-- </div> -->
     <div class="card-body">
       <h5 class="card-title">Comprar tu neumatico en TresA es un negocio redondo...&#128514&#128540&#128541</h5>
@@ -16,14 +16,14 @@
   <div class="row g-0">
     <div class="col-sm-3"></div>
     <div class="card border-0 mb-3 col-sm-6">
-      <img src="{BASE_URL}img/rueda.jpg" class="card-img-top" alt="...">
+      <img src="{BASE_URL}img/rueda.png" class="card-img-top" alt="...">
     </div>
     <div class="col-sm-3"></div>
     <div class="row">
       <div class="col-sm-6 mb-3 mb-sm-0">
         <div class="card border-0">
           <div class="card-body">
-            <h5 class="card-title">Sabes que es el indice de carga?</h5>
+            <h5 class="card-title">Descubri cual es tu tipo de gorra favorita?</h5>
             <p class="card-text">Determina la carga máxima con la cual puede circular un neumático a la velocidad máxima
               estipulada por el fabricante. El neumático equivalente debe tener un índice de carga igual o superior al
               del original.</p>

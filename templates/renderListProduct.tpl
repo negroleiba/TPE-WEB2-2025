@@ -7,8 +7,8 @@
       <table class="table table-dark table-striped table-sm">
         <thead>
           <tr class="text-center fs-3">
-            <th class="text-warning" scope="col">Marca</th>
-            <th class="text-warning" scope="col">Medida</th>
+            <th class="text-warning" scope="col">Nombre</th>
+            <th class="text-warning" scope="col">Talle</th>
             <th class="text-warning" scope="col">Categoria</th>
             <th class="text-warning" scope="col">Accion</th>
             {if ($log)}
@@ -18,9 +18,9 @@
           <tbody>
             {foreach from=$products item=product}
               <tr class="text-center fs-5">
-                <td>{$product->marca}</td>
-                <td>{$product->medidas}</td>
-                <td>{$product->categoria}</td>
+                <td>{$product->nombre_producto}</td>
+                <td>{$product->talle}</td>
+                <td>{$product->nombre_categoria}</td>
                 <td>
                 <button type="button" class="btn btn-info" name=action value="seeMore">See More</button>
                 {if ($log)}
@@ -29,13 +29,12 @@
                 </td>
                   <td>
                     <form action="" method="GET">
-                      <input type="hidden" name="idProduct" value="{$product->id_producto}">
-                      <input type="hidden" name="marca" value="{$product->marca}">
-                      <input type="hidden" name="medida" value="{$product->medidas}">
-                      <input type="hidden" name="indiceCarga" value="{$product->indice_carga}">
-                      <input type="hidden" name="indiceVelocidad" value="{$product->indice_velocidad}">
+                      <input type="hidden" name="idProduct" value="{$product->id_productos}">
+                      <input type="hidden" name="producto" value="{$product->nombre_producto}">
+                      <input type="hidden" name="talle" value="{$product->talle}">
+                      <input type="hidden" name="color" value="{$product->color}">
                       <input type="hidden" name="precio" value="{$product->precio}">
-                      <input type="hidden" name="categorias" value="{$product->categoria}">
+                      <input type="hidden" name="categorias" value="{$product->nombre_categoria}">
                     </form>
                   </td>
                 {/if}
@@ -48,11 +47,3 @@
       </div>
     </div>
   </section>
-                
-                <td>{$product->indice_carga}</td>
-                <td>{$product->indice_velocidad}</td>
-                <td>{$product->precio}</td>
-
-                 <th class="text-warning" scope="col">Ind. Carga</th>
-                 <th class="text-warning" scope="col">Ind. Vel.</th>
-                 <th class="text-warning" scope="col">Precio</th>

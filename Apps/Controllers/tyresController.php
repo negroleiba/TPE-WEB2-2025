@@ -1,7 +1,7 @@
 <?php
 
-require_once './App/Models/tyresModel.php';
-require_once './App/Views/tyresView.php';
+require_once './Apps/Models/tyresModel.php';
+require_once './Apps/Views/tyresView.php';
 
 class tyresController{
   private $model;
@@ -30,6 +30,7 @@ class tyresController{
   public function showListProducts(){
     session_start();
     $products = $this->model->getListProducts();
+    //var_dump($products);
     $categories = $this->model->queryCategories();
     // $log=$_SESSION['logged'];
     $this->view->showHead();

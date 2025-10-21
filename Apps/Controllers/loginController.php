@@ -1,7 +1,7 @@
 <?php
 
-require_once './App/Models/tyresModel.php';
-require_once './App/Views/tyresView.php';
+require_once './Apps/Models/tyresModel.php';
+require_once './Apps/Views/tyresView.php';
 
 class loginController{
 
@@ -37,7 +37,7 @@ class loginController{
       // $existUser = $this->model->singinUser($email);
       if($existUser && password_verify($pass, $existUser->pass)){
         session_start();
-        $_SESSION['userName']=$existUser->nombreUsuario;
+        $_SESSION['userName']=$existUser->nombre_usuario;
         $_SESSION['email']=$existUser->email;
         $_SESSION['logged']=true;
         header("Location: ".BASE_URL."homeAdmin");

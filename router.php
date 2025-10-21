@@ -5,8 +5,8 @@ define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 // echo '<h2>'.BASE_URL.'</h2>';
 
 
-require_once './App/Controllers/tyresController.php';
-require_once './App/Controllers/loginController.php';
+require_once './Apps/Controllers/tyresController.php';
+require_once './Apps/Controllers/loginController.php';
 
 
 if (!empty($_GET) && isset($_GET['action']) && !empty($_GET['action'])) { /* si viene definida la reemplazamos*/

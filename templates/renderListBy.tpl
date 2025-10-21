@@ -12,8 +12,8 @@
       <table class="table table-dark table-striped table-sm">
         <thead>
           <tr class="text-center fs-2">
-            <th class="text-warning" scope="col">Marca</th>
-            <th class="text-warning" scope="col">Medida</th>
+            <th class="text-warning" scope="col">Nombre</th>
+            <th class="text-warning" scope="col">Talle</th>
             <th class="text-warning" scope="col">Precio</th>
           </tr>
           <thead>
@@ -22,8 +22,8 @@
             {foreach from=$products item=product}
 
               <tr class="text-center fs-4">
-                <td>{$product->marca}</td>
-                <td>{$product->medidas}</td>
+                <td>{$product->nombre_producto}</td>
+                <td>{$product->talle}</td>
                 <td>{$product->precio}</td>
 
               </tr>

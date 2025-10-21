@@ -1,7 +1,7 @@
 <?php
 
 require_once('./config.php');
-require_once './App/Views/tyresView.php';
+require_once './Apps/Views/tyresView.php';
 class tyresModel{
 
   private $db;
@@ -69,7 +69,7 @@ class tyresModel{
 
   function filterBy($filter){
     $db = $this->db;
-    $query = $db->prepare('SELECT * FROM productos p INNER JOIN categorias c WHERE c.categoria = ? AND (p.id_categorias = c.id_categorias)');
+    $query = $db->prepare('SELECT * FROM productos p INNER JOIN categorias c WHERE c.nombre_categoria = ? AND (p.id_categorias = c.id_categorias)');
     $query->execute([$filter]);
     $products = $query->fetchAll(PDO::FETCH_OBJ);
     return $products;
