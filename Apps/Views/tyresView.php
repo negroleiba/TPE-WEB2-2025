@@ -83,17 +83,16 @@ class tyresView {
     $this->smart->assign('categorias',$categorias);
     $this->smart->display('templates/addItemForm.tpl');
   }
-  function editItemForm($marca,$medida,$indiceCarga,$indiceVelocidad,$precio,$categoria,$idProduct,$categorias){
-    $this->smart->assign('marca',$marca);
-    $this->smart->assign('medida',$medida);
-    $this->smart->assign('indiceCarga',$indiceCarga);
-    $this->smart->assign('indiceVelocidad',$indiceVelocidad);
-    $this->smart->assign('precio',$precio);
-    $this->smart->assign('categoria',$categoria);
-    $this->smart->assign('idProduct',$idProduct);
-    $this->smart->assign('categorias',$categorias);
+  public function editItemForm($nombre, $talle, $color, $precio, $categoria, $idProduct, $categorias){
+    $this->smart->assign('nombre', $nombre);
+    $this->smart->assign('talle', $talle);
+    $this->smart->assign('color', $color);
+    $this->smart->assign('precio', $precio);
+    $this->smart->assign('categoria', $categoria);
+    $this->smart->assign('idProduct', $idProduct);
+    $this->smart->assign('categorias', $categorias);
     $this->smart->display('templates/editItemForm.tpl');
-  }
+}
 
 
   function showFooter(){
@@ -103,10 +102,8 @@ class tyresView {
   function about(){
     $this->smart->display('templates/about.tpl');
   }
-  function seeMore($indiceCarga,$indiceVelocidad,$precio){
-    $this->smart->assign('indiceCarga',$indiceCarga);
-    $this->smart->assign('indiceVelocidad',$indiceVelocidad);
-    $this->smart->assign('precio',$precio);
+  function seeMore($product){
+    $this->smart->assign('product', $product);
     $this->smart->display('templates/seeMore.tpl');
   }
 }

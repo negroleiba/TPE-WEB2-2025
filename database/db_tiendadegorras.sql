@@ -108,8 +108,7 @@ CREATE TABLE `usuario` (
 -- --------------------------------------------------------
 
 INSERT INTO `usuario` (`id_usuario`, `nombre_usuario`, `email`, `pass`) VALUES
-(1, 'Tomas Gonzalez', 'tomasgonzalez24@gmail.com', '$2y$10$i9WiWDC.gqusSMLWVeP96u0PrgTyhyicR1SSRGeOcBucHBFPzoL5K'),
-(2, 'webadmin', 'webadmin@unicen.com', 'admin');
+(1, 'webadmin', 'webadmin@unicen.com', 'admin');
 
 --
 -- Índices para tablas volcadas

@@ -27,23 +27,26 @@ class tyresController{
     $this->view->showFooter();
   }
 
-  public function showListProducts(){
+  public function showListProducts() {
     session_start();
-    $products = $this->model->getListProducts();
-    //var_dump($products);
-    $categories = $this->model->queryCategories();
-    // $log=$_SESSION['logged'];
     $this->view->showHead();
-    if (!empty($_SESSION) && $_SESSION['logged']){
-      $this->view->showCRUD($_SESSION['userName'],$categories);
-      $this->view->renderListProduct($products,$_SESSION['logged']);
-    }else{
-      $this->view->showHeader($categories);
-      $this->view->renderListProduct($products,false);
-    }
-    $this->view->showFooter();
 
-  }
+    $products = $this->model->getListProducts();
+    $categorias = $this->model->queryCategories();
+    $log = $_SESSION['logged'] ?? false;
+
+    // 🔹 Mostrar nav según el estado de login
+    if (!empty($_SESSION) && $_SESSION['logged']) {
+        $this->view->showCRUD($_SESSION['userName'], $categorias);
+    } else {
+        $this->view->showHeader($categorias);
+    }
+
+    // 🔹 Mostrar la lista
+    $this->view->renderListProduct($products, $log);
+    $this->view->showFooter();
+}
+
 
   public function filterBy($filter){
     session_start();
@@ -69,44 +72,64 @@ class tyresController{
     $this->view->addItemForm($categorias);
     $this->view->showFooter();
   }
-  public function btnagregarItem(){ /*TODO hacer */
+ public function btnagregarItem() {
     session_start();
     $this->view->showHead();
     $categories = $this->model->queryCategories();
-    $this->view->showCRUD($_SESSION['userName'],$categories);
+    $this->view->showCRUD($_SESSION['userName'], $categories);
 
-    if (!empty($_GET) && (isset($_GET['marca']) && isset($_GET['medida']) && isset($_GET['categorias']))) {
-      $marca = $_GET['marca'];
-      $medida = $_GET['medida'];
-      $categoria = $_GET['categorias'];
-      $indiceCarga = $_GET['indiceCarga'];
-      $indiceVelocidad = $_GET['indiceVelocidad'];
-      $precio = $_GET['precio'];
-      $this->model->btnagregarItem($marca,$medida,$indiceCarga,$indiceVelocidad,$precio,$categoria);
-    }else{
-      echo 'Complete los cuadros';
+    if (!empty($_POST) && isset($_POST['nombre_producto'], $_POST['talle'], $_POST['categorias'], $_POST['precio'], $_POST['color'])) {
+        $nombre = $_POST['nombre_producto'];
+        $talle = $_POST['talle'];
+        $categoria = $_POST['categorias'];
+        $precio = $_POST['precio'];
+        $color = $_POST['color'];
+
+        $this->model->btnagregarItem($nombre, $precio, $talle, $color, $categoria);
+    } else {
+        echo 'Complete los cuadros';
     }
-    $log=$_SESSION['logged'];
-    $products = $this->model->getListProducts();
-    $this->view->renderListProduct($products,$log);
-    $this->view->showFooter();
-  }
 
-  public function editItem($getEdit){
-    session_start();
-    $this->view->showHead();
-    $categories = $this->model->queryCategories();
-    $this->view->showCRUD($_SESSION['userName'],$categories);
-    $idProduct = $getEdit['idProduct'];
-    $marca = $getEdit['marca'];
-    $medida = $getEdit['medida'];
-    $categoria = $getEdit['categorias'];
-    $indiceCarga = $getEdit['indiceCarga'];
-    $indiceVelocidad = $getEdit['indiceVelocidad'];
-    $precio = $getEdit['precio'];
-    $this->view->editItemForm($marca,$medida,$indiceCarga,$indiceVelocidad,$precio,$categoria,$idProduct,$categories);
+    $log = $_SESSION['logged'];
+    $products = $this->model->getListProducts();
+    $this->view->renderListProduct($products, $log);
     $this->view->showFooter();
-  }
+}
+
+  // Editar producto (formulario)
+ public function editItem($getEdit){
+        session_start();
+        $this->view->showHead();
+
+        if (empty($getEdit['idProduct'])) {
+            echo "ID de producto inválido";
+            return;
+        }
+
+        $idProduct = $getEdit['idProduct'];
+        $product = $this->model->btnSeeMore($idProduct);
+
+        if (!$product) {
+            echo "Producto no encontrado";
+            return;
+        }
+
+        $categories = $this->model->queryCategories();
+
+        $this->view->editItemForm(
+        $product->nombre_producto, // nombre
+        $product->talle,           // talle
+        $product->color,           // color
+        $product->precio,          // precio
+        $product->id_categorias,   // categoría
+        $idProduct,                // id
+        $categories                // lista categorías
+    );
+
+        $this->view->showFooter();
+    }
+
+
   public function editCat($getCat){
     session_start();
     $this->view->showHead();
@@ -117,22 +140,36 @@ class tyresController{
     $this->view->editcatForm($categoria,$idCat);
     $this->view->showFooter();
   }
-  public function btneditItem($postEdit){
-    session_start();
-    $this->view->showHead();
-    $categories = $this->model->queryCategories();
-    $this->view->showCRUD($_SESSION['userName'],$categories);
-    $idProduct = $_GET['idProduct'];
-    $marca = $_GET['marca'];
-    $medida = $_GET['medida'];
-    $categoria = $_GET['categorias'];
-    $indiceCarga = $_GET['indiceCarga'];
-    $indiceVelocidad = $_GET['indiceVelocidad'];
-    $precio = $_GET['precio'];
-    $this->model->editItemForm($marca,$medida,$indiceCarga,$indiceVelocidad,$precio,$categoria,$idProduct);
-    //$this->view->editItemForm();
-    $this->view->showFooter();
+  public function btneditItem(){
+      session_start();
+      $this->view->showHead();
+
+      $idProduct = trim($_POST['idProduct']);
+      $nombre = trim($_POST['nombre_producto']);
+      $talle = trim($_POST['talle']);
+      $color = trim($_POST['color']);
+      $precio = trim($_POST['precio']);
+      $categoria = trim($_POST['categorias']);
+
+      if ($idProduct === "" || $nombre === "" || $talle === "" || $color === "" || $precio === "" || $categoria === "") {
+          echo "Complete todos los campos";
+          return;
+
+      }
+
+      $idProduct = $_POST['idProduct'];
+      $nombre = $_POST['nombre_producto'];
+      $talle = $_POST['talle'];
+      $color = $_POST['color'];
+      $precio = $_POST['precio'];
+      $categoria = $_POST['categorias'];
+
+      $this->model->editItemForm($nombre, $precio, $talle, $color, $categoria, $idProduct);
+
+      echo "Producto editado correctamente!";
+      $this->view->showFooter();
   }
+
   public function btneditCat($getCat){
     session_start();
     $this->view->showHead();
@@ -220,11 +257,21 @@ class tyresController{
   public function seeMoreItem(){
     session_start();
     $this->view->showHead();
-    $indiceCarga = $_GET['indiceCarga'];
-    $indiceVelocidad = $_GET['indiceVelocidad'];
-    $precio = $_GET['precio'];
-    $this->view->seeMore($indiceCarga,$indiceVelocidad,$precio);
+
+    $id = $_GET['id'] ?? null;
+
+    if ($id) {
+        $product = $this->model->btnSeeMore($id);
+
+        if ($product) {
+            $this->view->seeMore($product);
+        } else {
+            echo "Producto no encontrado.";
+        }
+    } else {
+        echo "ID de producto inválido.";
+    }
+
     $this->view->showFooter();
-    
-  }
+}
 }

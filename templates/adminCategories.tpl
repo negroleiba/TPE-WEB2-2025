@@ -18,12 +18,12 @@
           <tbody>
             {foreach from=$categorias item=cat}
               <tr class="text-center fs-5">
-                <td>{$cat->categoria}</td>
+                <td>{$cat->nombre_categoria}</td>
                 {if ($log)}
                   <td>
                     <form action="" method="GET">
-                      <input type="hidden" name="id" value="{$cat->id}">
-                      <input type="hidden" name="categoria" value="{$cat->categoria}">
+                      <input type="hidden" name="id" value="{$cat->id_categorias}">
+                      <input type="hidden" name="categoria" value="{$cat->nombre_categoria}">
                       <button class="btn btn-secondary" type="submit" name="action" value="editCat">Edit</button>
                       <button class="btn btn-danger" type="submit" name="action" value="eraseCat">Erase</button>
                     </form>

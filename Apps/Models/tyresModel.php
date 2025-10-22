@@ -80,14 +80,14 @@ class tyresModel{
    */
   function btnagregarItem($nombre,$precio,$talle,$color,$categoria){
     $db = $this->db;
-    $query = $db->prepare('INSERT INTO productos (nombre_producto,precio,talle,color,id_categorias) VALUES (?,?,?,?,?,?)');
+    $query = $db->prepare('INSERT INTO productos (nombre_producto,precio,talle,color,id_categorias) VALUES (?,?,?,?,?)');
     $query->execute([$nombre,$precio,$talle,$color,$categoria]);
     $products = $query->fetchAll(PDO::FETCH_OBJ);
     return $products;
   }
   function editItemForm($nombre,$precio,$talle,$color,$categoria,$idProducto){
     $db = $this->db;
-    $sentence = "UPDATE `productos` SET `productos`.`nombre_producto`=?,`productos`.`precio`=?,`productos`.`talle`=?,`productos`.`color`=?,`productos`.`id_categoria`=? WHERE `productos`.`id_productos`=?";
+    $sentence = "UPDATE `productos` SET `productos`.`nombre_producto`=?,`productos`.`precio`=?,`productos`.`talle`=?,`productos`.`color`=?,`productos`.`id_categorias`=? WHERE `productos`.`id_productos`=?";
     $query = $db->prepare($sentence);
     $query->execute([$nombre,$precio,$talle,$color,$categoria,$idProducto]);
     $products = $query->fetchAll(PDO::FETCH_OBJ);
@@ -123,7 +123,7 @@ class tyresModel{
   function addUser($nombreUsuario,$email,$pass){
     $pass = password_hash($pass, PASSWORD_BCRYPT);
     $db = $this->db;
-    $query = $db->prepare("INSERT INTO usuarios (nombre_usuario,email,pass) VALUES (?,?,?)");
+    $query = $db->prepare("INSERT INTO usuario (nombre_usuario,email,pass) VALUES (?,?,?)");
     $query->execute([$nombreUsuario, $email, $pass]);
   }
   
@@ -135,11 +135,11 @@ class tyresModel{
     return $categorias;
   }
 
-  function btnSeeMore($talle,$color,$precio,$id_productos){
+  function btnSeeMore($id_productos){
     $db = $this->db;
-    $query= $db->prepare("SELECT 'talle'=?.'color'=?.'precio'=? FROM `productos` WHERE 'id_productos'=?");
-    $query->execute([$talle,$color,$precio,$id_productos]);
-    $products = $query->fetchAll(PDO::FETCH_OBJ);
+    $query= $db->prepare("SELECT * FROM productos WHERE id_productos = ?");
+    $query->execute([$id_productos]);
+    $products = $query->fetch(PDO::FETCH_OBJ);
     return $products;
   }
 
